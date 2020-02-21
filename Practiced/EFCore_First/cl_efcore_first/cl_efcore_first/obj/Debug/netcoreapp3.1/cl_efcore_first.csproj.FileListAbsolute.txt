@@ -1,0 +1,5 @@
+C:\Gitrepo\EFCore\Practiced\EFCore_First\cl_efcore_first\cl_efcore_first\bin\Debug\netcoreapp3.1\cl_efcore_first.deps.json
+C:\Gitrepo\EFCore\Practiced\EFCore_First\cl_efcore_first\cl_efcore_first\bin\Debug\netcoreapp3.1\cl_efcore_first.dll
+C:\Gitrepo\EFCore\Practiced\EFCore_First\cl_efcore_first\cl_efcore_first\obj\Debug\netcoreapp3.1\cl_efcore_first.csprojAssemblyReference.cache
+C:\Gitrepo\EFCore\Practiced\EFCore_First\cl_efcore_first\cl_efcore_first\obj\Debug\netcoreapp3.1\cl_efcore_first.AssemblyInfoInputs.cache
+C:\Gitrepo\EFCore\Practiced\EFCore_First\cl_efcore_first\cl_efcore_first\obj\Debug\netcoreapp3.1\cl_efcore_first.AssemblyInfo.cs
