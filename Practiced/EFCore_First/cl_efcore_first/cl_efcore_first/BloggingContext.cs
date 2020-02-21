@@ -1,6 +1,7 @@
 ﻿using cl_efcore_first.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ using System.Text;
 
 namespace cl_efcore_first
 {
-    public class BloggingContext:DbContext
+    public class BloggingContext : DbContext
     {
         //public static readonly ILoggerFactory MyLoggerFactory= LoggerFactory.Create(builder => { builder.AddConsole(); });
 
@@ -22,7 +23,7 @@ namespace cl_efcore_first
         public DbSet<Post> Posts { get; set; }
         //The providerName setting is not required on EF Core connection strings stored in App.config because the database provider is configured via code.
         //You can then read the connection string using the ConfigurationManager API in your context's OnConfiguring method. 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)            
+        protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
         {
             //if we were to log details of context
 
@@ -41,16 +42,26 @@ namespace cl_efcore_first
             //Connection resiliency automatically retries failed database commands.
             //The feature can be used with any database by supplying an "execution strategy", which encapsulates the logic necessary to detect failures and retry commands.
             //EF Core providers can supply execution strategies tailored to their specific database failure conditions and optimal retry policies.
-              
+
 
             // Setting the provider instance
             var connectionString = ConfigurationManager.GetSection("DatabaseLocations:ConnectionStringWin").ToString();
             //set provider as sql or any other data ase you wanted to connect to
-            optionBuilder.UseSqlServer(connectionString, options=>options.EnableRetryOnFailure());
+            optionBuilder.UseSqlServer(connectionString, options => options.EnableRetryOnFailure());
 
 
             //see EFCore notes for more informations
 
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Blog>(ModifyModel);
+        }
+
+        private void ModifyModel(EntityTypeBuilder<Blog> entity)
+        {
+            entity.Property(b => b.Url).IsRequired();
         }
     }
 }
